@@ -1,0 +1,59 @@
+﻿@model IEnumerable<APPBIBLIOTECA.Models.Autor>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    <a href="@Url.Action("AgregarEditar", "Autor")" class="btn btn-default">Agregar </a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nacionalidad)
+            </th>
+           <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nacionalidad)
+            </td>
+    
+            <td>
+                <a href="@Url.Action("AgregarEditar","Autor", new { id = item.IdAutor })" class="btn btn-default"> Editar </a> |
+                <a onclick="BorrarAutor(@item.IdAutor)" class="btn btn-default"> Borrar </a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+    <script>
+        $(function BorrarAutor(id){
+                windows.location.href = '@Url.Action("Borrar", "Autor")/'+id;
+        });
+    </script>
+
+}

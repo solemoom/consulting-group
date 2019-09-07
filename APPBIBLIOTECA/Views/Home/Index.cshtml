@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Biblioteca</h2>
+        <p>
+            <ul> <a href="@Url.Action("Index","Estudiante")" class="btn btn-default">Administrar Estudiantes </a> </ul>
+            <ul> <a href="@Url.Action("Index","Libro")" class="btn btn-default">Administrar Libros </a> </ul>
+            <ul> <a href="@Url.Action("Index","Autor")" class="btn btn-default">Administrar Autores </a></ul>
+            <ul> <a href="@Url.Action("Index","LibAut")" class="btn btn-default">Administrar Libros y sus autores </a></ul>
+            <ul> <a href="@Url.Action("Index","Prestamo")" class="btn btn-default">Administrar Prestamos </a></ul>
+</p>
+    </div>
+    
+</div>

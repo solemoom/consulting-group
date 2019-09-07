@@ -1,0 +1,75 @@
+﻿@model IEnumerable<APPBIBLIOTECA.Models.Estudiante>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("AgregarEditar","Estudiante")" class="btn btn-default">Agregar </a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edad)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carrera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad)
+        </td>
+        <td>
+            <a href="@Url.Action("AgregarEditar","Estudiante", new { id = item.IdLector })" class="btn btn-default"> Editar </a> |
+            <a onclick="BorrarEstudiante(@item.IdLector)" class="btn btn-default"> Borrar </a>
+            
+        </td>
+    </tr>
+}
+
+</table>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+<script>
+        $(function BorrarEstudiante(id){
+                windows.location.href = '@Url.Action("Borrar", "Estudiante")/'+id;
+        });
+</script>
+
+    }

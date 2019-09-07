@@ -1,0 +1,74 @@
+﻿@model IEnumerable<APPBIBLIOTECA.Models.Prestamo>
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <a href="@Url.Action("AgregarEditar","Prestamo")" class="btn btn-default">Agregar </a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Estudiante.Nombre )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Libro.Titulo )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPrestamo )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaDevolucion )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Devuelto )
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estudiante.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libro.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPrestamo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDevolucion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Devuelto)
+            </td>
+            <td>
+                <a href="@Url.Action("AgregarEditar","Prestamo", new { id = item.idPrestamo })" class="btn btn-default"> Editar </a> |
+                <a onclick="BorrarPrestamo(@item.IdLector)" class="btn btn-default"> Borrar </a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+    <script>
+        $(function BorrarPrestamo(id){
+                windows.location.href = '@Url.Action("Borrar", "Prestamo")/'+id;
+        });
+    </script>
+
+}
+

@@ -1,0 +1,35 @@
+﻿@model APPBIBLIOTECA.Models.Autor
+@{
+    ViewBag.Title = "AgregarEditar";
+}
+
+<div class="form-body">
+    <br />
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.IdAutor)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre )
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nacionalidad)
+            @Html.EditorFor(model => model.Nacionalidad)
+            @Html.ValidationMessageFor(model => model.Nacionalidad)
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" value="Agregar" class="btn button" />
+            <input type="reset" value="Clear" class="btn button" />
+        </div>
+    }
+
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueruyval");
+}
+

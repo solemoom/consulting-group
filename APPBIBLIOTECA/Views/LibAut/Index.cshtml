@@ -1,0 +1,59 @@
+﻿@model IEnumerable<APPBIBLIOTECA.Models.LibAut>
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <a href="@Url.Action("AgregarEditar","LibAut")" class="btn btn-default">Agregar </a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Libro.Titulo )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor.Nombre)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libro.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor.Nombre)
+            </td>
+            <td>
+                <a href="@Url.Action("AgregarEditar","LibAut", new { id = item.IdLibAut })" class="btn btn-default"> Editar </a> |
+                <a onclick="BorrarLibAut(@item.IdLibAut)" class="btn btn-default"> Borrar </a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+    <script>
+        $(function BorrarLibAut(id){
+                windows.location.href = '@Url.Action("Borrar", "LibAut")/'+id;
+        });
+    </script>
+
+}
+
+
+
+

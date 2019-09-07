@@ -1,0 +1,48 @@
+﻿@model APPBIBLIOTECA.Models.Estudiante
+@{
+    ViewBag.Title = "AgregarEditar";
+}
+
+<div class="form-body">
+    <br />
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.IdLector)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CI )
+            @Html.EditorFor(model => model.CI )
+            @Html.ValidationMessageFor(model => model.CI )
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre )
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Direccion )
+            @Html.EditorFor(model => model.Direccion)
+            @Html.ValidationMessageFor(model => model.Direccion)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Carrera)
+            @Html.EditorFor(model => model.Carrera)
+            @Html.ValidationMessageFor(model => model.Carrera)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Edad)
+            @Html.EditorFor(model => model.Edad)
+            @Html.ValidationMessageFor(model => model.Edad)
+        </div>
+        <div class="form-group">
+           <input type="submit" value="Agregar" class="btn button" /> 
+            <input type="reset" value="Clear" class="btn button" />
+        </div>
+    }
+
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueruyval");
+    }

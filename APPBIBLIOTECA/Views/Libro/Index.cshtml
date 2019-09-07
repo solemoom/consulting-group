@@ -1,0 +1,65 @@
+﻿@model IEnumerable<APPBIBLIOTECA.Models.Libro>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    <a href="@Url.Action("AgregarEditar","Libro")" class="btn btn-default">Agregar </a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Editorial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Area)
+            </th>
+   
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Editorial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                <a href="@Url.Action("AgregarEditar","Libro", new { id = item.IdLibro })" class="btn btn-default"> Editar </a> |
+                <a onclick="BorrarLibro(@item.IdLibro)" class="btn btn-default"> Borrar </a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+    <script>
+        $(function BorrarLibro(id){
+                windows.location.href = '@Url.Action("Borrar", "Libro")/'+id;
+        });
+    </script>
+
+}
